@@ -32,11 +32,11 @@
     <!-- /.row -->
 
     <!-- Projects Row -->
-    @forelse ($books as $book)
+    @forelse ($books as $key => $book)
         
         <div class="col-xs-12 col-sm-6 col-md-3">
         <div class="thumbnail">
-            <a href="{{ url('/')}}/book_view/?book={{ $book->id_admin.'/'.$book->nameFile }}.epub">
+            <a href="{{ url('/')}}/book_view/?book={{ $book->id_admin.'/'.$book->nameFile }}">
                 <img class="img-responsive img-rounded cover-book" style="width:100%; height:300px;" src="{{ asset('storage/book/penulis/'.$book->id_admin.'/cover/'.$book->nameFile.'.jpg') }}" alt="">
             </a>
             <div class="caption">
@@ -45,7 +45,7 @@
                 </h3> --}}
                 <strong>Autor : 
                 <a href="{{ url('/')}}/profil/{{$book->id_admin}}">
-                    {{ $book->name}}</strong>
+                    {{ $book->autor->name}}</strong>
                 </a>
                 <p>{{ $book->deskripsi }}</p>
                 <button style="width: 100%; radius:0;" class="btn btn-info">Beli</button>
@@ -59,6 +59,6 @@
 
 </div>
 <div class="container">
-    {{ $books->appends(Request::only('q'))->links() }}
+     {{ $books->appends(Request::only('q'))->links() }} 
 </div>
 @endsection

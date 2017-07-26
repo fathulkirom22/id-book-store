@@ -38,6 +38,7 @@
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/') }}">
+                    <img src="{{URL::asset('img/IDBOOK_PN.png')}}" style="display: inline-block; height: 30px;">
                     {{ config('app.name', 'Laravel') }}
                 </a>
             </div>

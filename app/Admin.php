@@ -28,8 +28,8 @@ class Admin extends Authenticatable
         'password', 'remember_token',
     ];
 
-     public function books()
+    public function book()
     {
-        return $this->hasMany('App\book', 'id_admin');
+        return $this->belongsTo('App\book', 'id_admin', 'id');
     }
 }

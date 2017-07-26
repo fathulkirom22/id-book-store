@@ -11,50 +11,121 @@
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
         <!-- Styles -->
+        <link href="{{ URL::asset('css/app.css')}}" rel="stylesheet">
         <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Raleway', sans-serif;
-                font-weight: 100;
-                height: 100vh;
-                margin: 0;
+            html {
+                position: relative;
+                min-height: 100%;
             }
-            body {;
-                margin: 0;
-                background: url({{asset('img/COV.png')}}) ;
-                background-size:cover;
-                background-position:center;
-                background-repeat:no-repeat ;
-                background-attachment:fixed ;
+            .carousel-fade .carousel-inner .item {
+                opacity: 0;
+                transition-property: opacity;
+            }
+            .carousel-fade .carousel-inner .active {
+                opacity: 1;
+            }
+            .carousel-fade .carousel-inner .active.left,
+            .carousel-fade .carousel-inner .active.right {
+                left: 0;
+                opacity: 0;
+                z-index: 1;
+            }
+            .carousel-fade .carousel-inner .next.left,
+            .carousel-fade .carousel-inner .prev.right {
+                opacity: 1;
+            }
+            .carousel-fade .carousel-control {
+                z-index: 2;
+            }
+            @media all and (transform-3d),
+            (-webkit-transform-3d) {
+                .carousel-fade .carousel-inner > .item.next,
+                .carousel-fade .carousel-inner > .item.active.right {
+                    opacity: 0;
+                    -webkit-transform: translate3d(0, 0, 0);
+                    transform: translate3d(0, 0, 0);
+                }
+                .carousel-fade .carousel-inner > .item.prev,
+                .carousel-fade .carousel-inner > .item.active.left {
+                    opacity: 0;
+                    -webkit-transform: translate3d(0, 0, 0);
+                    transform: translate3d(0, 0, 0);
+                }
+                .carousel-fade .carousel-inner > .item.next.left,
+                .carousel-fade .carousel-inner > .item.prev.right,
+                .carousel-fade .carousel-inner > .item.active {
+                    opacity: 1;
+                    -webkit-transform: translate3d(0, 0, 0);
+                    transform: translate3d(0, 0, 0);
+                }
+            }
+            .item:nth-child(1) {
+                background: url({!! URL::asset('img/bener4.jpg') !!}) no-repeat center center fixed;
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                -o-background-size: cover;
+                background-size: cover;
+            }
+            .item:nth-child(2) {
+                background: url({!! URL::asset('img/bener3.jpg') !!}) no-repeat center center fixed;
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                -o-background-size: cover;
+                background-size: cover;
+            }
+            .item:nth-child(3) {
+                background: url({!! URL::asset('img/bener6.jpg') !!}) no-repeat center center fixed;
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                -o-background-size: cover;
+                background-size: cover;
+            }
+            .carousel {
+                z-index: -99;
+            }
+            .carousel .item {
+                position: fixed;
+                width: 100%;
+                height: 100%;
+            }
+            .title {
+                text-align: center;
+                margin-top: 20px;
+                padding: 10px;
+                text-shadow: 2px 2px #000;
+                color: #FFF;
             }
 
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
+            .mainPitch-content{
+                align: center;
                 align-items: center;
                 display: flex;
                 justify-content: center;
+                color: white;
             }
 
-            .position-ref {
-                position: relative;
+            .background-link{
+                background: black;
+                opacity: 0.6;
+                border-radius: 5px;
+                padding-top: 5px;
+                padding-bottom: 5px;
             }
 
-            .top-right {
+            .mainPitch{
                 position: absolute;
-                right: 10px;
-                top: 18px;
+                top: 20px;
+                width: 100%;
             }
 
-            .content {
-                text-align: center;
+            .img-logo{
+                margin-top: 10%;
+                height: auto;
+                weight: auto;
             }
 
-            .title {
-                font-size: 84px;
+            .container {
+                height: 600px;
             }
 
             .links > a {
@@ -67,40 +138,32 @@
                 text-transform: uppercase;
             }
 
-            .m-b-md {
-                margin-bottom: 30px;
-            }
         </style>
     </head>
     <body background="">
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @if (Auth::check())
-                        <a href="{{ url('/home') }}">Home</a>
-                    @elseif (Auth::guard('admins')->check())
-                        <a href="{{ url('/admin/home') }}">Dashboard</a>
-                    @else
-                        <a href="{{ url('/admin') }}">I am Autor</a>
-                        <a href="{{ url('/login') }}">Login</a>
-                        <a href="{{ url('/register') }}">Register</a>
-                    @endif
+        <div class="carousel slide carousel-fade" data-ride="carousel">
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
                 </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    ID Book Store
+                <div class="item">
                 </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                <div class="item">
                 </div>
             </div>
         </div>
+
+        {{-- main pitch --}}
+        <div class="mainPitch" style="">
+            @component('layouts.welcome')
+            @endcomponent
+        </div>
+       
+        <!-- Scripts -->
+        <script src="{{ URL::asset('js/app.js')}}"></script>
+        <script src="{{ URL::asset('js/jquery-3.2.1.min.js')}}"></script>
+        <script>
+            $('.carousel').carousel();
+        </script>
     </body>
 </html>

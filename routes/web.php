@@ -30,6 +30,21 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
     Route::post('register', 'Auth\RegisterController@register');
     Route::get('home', 'HomeController@index');
     Route::post('home/postBook', 'UploadBook@postBook');
+    Route::get('home/postBook', 'UploadBook@index');
+});
+
+Route::group(['namespace' => 'Autor', 'prefix' => 'autor'], function () {
+    Route::get('/', 'Auth\LoginController@showLoginForm');
+    Route::post('login', 'Auth\LoginController@login');
+    Route::post('logout', 'Auth\LoginController@logout');
+    Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');
+    Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm');
+    Route::post('password/reset', 'Auth\ResetPasswordController@reset');
+    Route::get('register', 'Auth\RegisterController@showRegistrationForm');
+    Route::post('register', 'Auth\RegisterController@register');
+    Route::get('home', 'HomeController@index');
+    Route::post('home/postBook', 'UploadBook@postBook');
+    Route::get('home/postBook', 'UploadBook@index');
 });
 
 
@@ -38,6 +53,7 @@ Route::get('/book_view',function () {
 })->middleware('auth');;
 
 Route::get('/profil/{id}', 'UsersProfil@show');
+Route::get('/home/mylibrary', 'MyLibraryController@index');
 
 
 
